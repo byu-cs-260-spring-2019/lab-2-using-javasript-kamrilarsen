@@ -6,7 +6,7 @@ window.onload = function () {
           return;
         console.log(value);
 
-        const url = "http://api.openweathermap.org/data/2.5/weather?q=" + value + ",US&units=imperial" + 
+        const url = "https://api.openweathermap.org/data/2.5/weather?q=" + value + ",US&units=imperial" + 
             "&APPID=222301cf37f66d5f1af65d1afb9ad1ec";
         try {
             const response = await fetch(url);
@@ -32,7 +32,7 @@ window.onload = function () {
         
         
 
-        const url2 = "http://api.openweathermap.org/data/2.5/forecast?q=" + value + ", US&units=imperial" + 
+        const url2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + value + ", US&units=imperial" + 
             "&APPID=222301cf37f66d5f1af65d1afb9ad1ec";
         try {
             const response = await fetch(url2);
