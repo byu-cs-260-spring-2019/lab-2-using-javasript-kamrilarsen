@@ -1,0 +1,44 @@
+h5 {
+    margin-top: 40px;
+    align-content: center;
+}
+
+h3 {
+    margin-top: 40px;
+}
+
+body {
+    background-color: rgb(138, 205, 228);
+    font-family: 'Abel';
+}
+
+img {
+    align-content: center;
+}
+
+p {
+    align-content: center;
+}
+
+div {
+    text-align: center;
+}
+
+.intro {
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+#col0, #col2, #col4 {
+ background-color: rgb(198, 218, 240);
+}
+
+#col1, #col3, #col5 {
+    background-color: rgb(198, 218, 240);
+}
+
+.horizonLine {
+    width: 70%;
+    background-color: black;
+
+}
