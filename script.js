@@ -11,6 +11,7 @@ window.onload = function () {
         try {
             const response = await fetch(url);
             const json = await response.json();
+            console.log(json);
             let results = "";
             results += '<h1>Weather in ' + json.name + "</h1>";
             for (let i=0; i < json.weather.length; i++) {
@@ -24,7 +25,7 @@ window.onload = function () {
                     results += ", ";
                 }
             }
-            results += "</p>";
+            results += " with winds of " + String(json.wind.speed).split(".")[0] + " mph</p>";
             document.getElementById("weatherResults").innerHTML = results;
         } catch(err) {
             console.log(err);
@@ -37,24 +38,24 @@ window.onload = function () {
         try {
             const response = await fetch(url2);
             const json = await response.json();
+            console.log(json);
             let forecast = "";
-            var currentDay = moment(json.list[0].dt_txt).format('MMMM Do YYYY');
+            var currentDay = moment.utc(json.list[0].dt_txt).local().format('MMMM Do YYYY');
             forecast += "<div><h1>Five-Day Weather Forcast</h1></div> <br>";
             forecast += "<div class=\"container\"> <div class=\"row\"> <div class=\"col border border-dark\" id=\"col0\">";
-            forecast += "<h3>" + moment(json.list[0].dt_txt).format('MMMM Do') + "</h3>";
+            forecast += "<h3>" + moment.utc(json.list[0].dt_txt).local().format('MMMM Do') + "</h3>";
             var columnNum = 1;    
             for (let i=0; i < json.list.length; i++) {
-                if (currentDay != moment(json.list[i].dt_txt).format('MMMM Do YYYY'))
+                if (currentDay != moment.utc(json.list[i].dt_txt).local().format('MMMM Do YYYY'))
                 {
                     forecast += "</div> <div class=\"col border border-dark\" id=\"col" + String(columnNum) + "\">";
-                    forecast += "<h3>" + moment(json.list[i].dt_txt).format('MMMM Do') + "</h3>";
+                    forecast += "<h3>" + moment.utc(json.list[i].dt_txt).local().format('MMMM Do') + "</h3>";
                     columnNum += 1;
                 }
-                currentDay = moment(json.list[i].dt_txt).format('MMMM Do YYYY');
-                forecast += "<h5>" + moment(json.list[i].dt_txt).format('h a') + "</h5>";
+                currentDay = moment.utc(json.list[i].dt_txt).local().format('MMMM Do YYYY');
+                forecast += "<h5>" + moment.utc(json.list[i].dt_txt).local().format('h a') + "</h5>";
                 forecast += '<img src="http://openweathermap.org/img/w/' + json.list[i].weather[0].icon + '.png"/>';
                 forecast += "<p>" + String(json.list[i].main.temp).split(".")[0] + " &deg;F</p>";
-                //forecast += "<p>———</p>"
                 forecast += "<hr class=\"horizonLine\">";
             }
             forecast += "</div> </div> </div>";
